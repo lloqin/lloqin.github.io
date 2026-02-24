@@ -1,0 +1,125 @@
+<h3 id="siteTitle"></h3>
+<p id="subtitle">Best in dark mode. Gradient visible on mobile app only.</p>
+
+<input type="taext" id="textInput" value="Change this text">
+
+<div id="controls">
+
+  <!-- Color Presets -->
+  <div class="control-group">
+    <label style="align-self:center;">Color Presets</label>
+    <div class="control-row">
+      <select id="presetSelect">
+        <option value="pastelRainbow" selected>🌈 Pastel Rainbow</option>
+        <option value="random">🎨 Random (always different)</option>
+        <option value="siblings">🫂 Sibling Colors (always different)</option>
+        <optgroup label="── Local Presets ──" id="localPresetsGroup"></optgroup>
+      </select>
+      <button id="applyPresetBtn">Apply</button>
+    </div>
+    <div class="control-row" style="margin-top:5px;">
+      <button id="saveLocalBtn" class="secondary">Save Local</button>
+      <button id="exportBtn" class="secondary">Export</button>
+      <button id="importBtn" class="secondary">Import</button>
+      <button id="clearPresetsBtn" class="secondary" style="background:#8b2020;">Clear</button>
+    </div>
+  </div>
+
+  <!-- Options + # of Colors -->
+  <div class="control-group">
+    <label style="align-self:center;">Options</label>
+    <div class="control-row">
+      <label style="font-size:13px; color:#ccc; margin-right:2px;"># of Colors</label>
+      <select id="colorCountSelect">
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6" selected>6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+      </select>
+      <button id="reverseGradient">Reverse</button>
+      <button id="themeToggle" class="secondary">Light Mode</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Colors row -->
+<div id="colorSection">
+  <div class="control-group" style="align-items:center;">
+    <label style="align-self:center;">Colors</label>
+    <div id="colorContainer"></div>
+  </div>
+</div>
+
+<div id="preview" class="preview"></div>
+
+<button id="copyBtn">Copy Code</button>
+
+<div id="output"></div>
+
+
+
+<!-- Save Local Preset Modal -->
+<div class="modal-overlay" id="saveModal">
+  <div class="modal">
+    <h4>Save Local Preset</h4>
+    <input type="text" id="presetNameInput" placeholder="Preset Name...">
+    <div class="notice">
+      <strong>IMPORTANT:</strong> Presets are saved to the web browser you're using NOW. You can close the window and come back, and they'll still be here, but no one will see them except people who use the web browser you're using now (unless you use the import/export options). They stay around in your browser until you clear them.
+    </div>
+    <div class="btn-row">
+      <button class="secondary" id="modalCloseBtn">Close</button>
+      <button id="modalSaveBtn">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Export Modal -->
+<div class="modal-overlay" id="exportModal">
+  <div class="modal">
+    <h4>Your Presets</h4>
+    <textarea id="exportJson" readonly style="width:100%;height:140px;background:#111;color:#ccc;border:1px solid #444;border-radius:8px;padding:10px;font-size:12px;font-family:monospace;resize:vertical;margin-bottom:10px;"></textarea>
+    <div class="notice">
+      <strong>IMPORTANT:</strong> Copy this text and save it somewhere safe. You can use the "Import" function to load it back at any time, on any browser. Without this, your presets only live in this browser.
+    </div>
+    <div class="btn-row">
+      <button class="secondary" id="exportCopyBtn">Copy JSON</button>
+      <button class="secondary" id="exportDownloadBtn">Download File</button>
+      <button class="secondary" id="exportCloseBtn">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Import Modal -->
+<div class="modal-overlay" id="importModal">
+  <div class="modal">
+    <h4>Import Presets</h4>
+    <div class="notice" style="margin-bottom:10px;">
+      <strong>IMPORTANT:</strong> Existing presets will not be replaced. If an imported preset has the same name as one you already have, yours is kept and the incoming one is skipped. You may still want to export your local presets before importing, just to be safe.
+    </div>
+    <textarea id="importJson" placeholder="Paste your presets JSON here..." style="width:100%;height:120px;background:#111;color:#ccc;border:1px solid #444;border-radius:8px;padding:10px;font-size:12px;font-family:monospace;resize:vertical;margin-bottom:10px;"></textarea>
+    <div class="btn-row">
+      <button class="secondary" id="importCancelBtn">Cancel</button>
+      <button id="importFileBtn" class="secondary">Upload File</button>
+      <input type="file" id="importFile" accept=".json" style="display:none">
+      <button id="importConfirmBtn">Import</button>
+    </div>
+  </div>
+</div>
+
+<!-- Clear Presets Confirmation Modal -->
+<div class="modal-overlay" id="clearModal">
+  <div class="modal">
+    <h4>Delete All Presets</h4>
+    <p style="font-size:14px; margin-bottom:14px; line-height:1.5;">Are you sure you want to delete all of your saved local presets? This cannot be undone.</p>
+    <div class="btn-row">
+      <button class="secondary" id="clearCancelBtn">Cancel</button>
+      <button id="clearConfirmBtn" style="background:#8b2020;">Delete All</button>
+    </div>
+  </div>
+</div>
+
+<div id="credit"></div>
